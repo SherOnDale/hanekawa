@@ -14,8 +14,6 @@ module.exports = async (client, message) => {
     .trim()
     .toLowerCase()
 
-    message.reply(command)
-
     if(command === 'start') {
       crawler.start(client)
     } 
@@ -23,4 +21,13 @@ module.exports = async (client, message) => {
       message.reply('stopped')
       crawler.stopExecution()
     }
+    if(command.startsWith('resume')) {
+      const pageNumber = Number(command.split(' ')[1])
+      if(Number.isFinite(pageNumber)) {
+        const limit = (pageNumber -1) * 50 
+        crawler.start(client, limit)
+      }
+      
+    }
+
 }
