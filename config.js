@@ -5,5 +5,6 @@ if(process.env.NODE_ENV !== 'production') {
 module.exports = {
   botToken: process.env.BOT_TOKEN || '',
   prefix: process.env.PREFIX || '~',
-  mongoUrl: process.env.MONGO_URL || ''
+  mongoUrl: process.env.MONGO_URL || '',
+  logChannel: process.env.LOG_CHANNEL || '593610953363554314'
 }

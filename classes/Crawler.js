@@ -2,6 +2,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const Discord = require('discord.js');
 const mongoService = require('../services/mongo');
+const config = require('../config');
 
 module.exports = class Crawler {
   constructor() {
@@ -9,7 +10,7 @@ module.exports = class Crawler {
   }
 
   start(client, limit=0) {
-    this.logChannel = client.channels.cache.get('593610953363554314')
+    this.logChannel = client.channels.cache.get(config.logChannel)
     this.logChannel.send('On page ' + ((limit / 50) + 1))
     console.log('On page ' + ((limit / 50) + 1))
     axios.get(`https://myanimelist.net/character.php?limit=${limit}`).then((response) => {
