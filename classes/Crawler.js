@@ -30,12 +30,14 @@ module.exports = class Crawler {
             $('#content td[valign="top"][style="padding-left: 5px;"] table').remove()
             $('#content td[valign="top"][style="padding-left: 5px;"] h2').remove()
             tempContent.additionalInfo = $('#content td[valign="top"][style="padding-left: 5px;"]').text().replace(/(\s)*/g, '$1').trim()
+            tempContent.from = $('#content table td>a').eq(0).text().trim()
             if(!tempContent.additionalInfo) tempContent.additionalInfo = 'N/A'
             const msgEmbed = new Discord.MessageEmbed()
               .setTitle(tempContent.name + ' added!')
               .setColor('#00ff00')
               .setThumbnail(tempContent.imageUrl)
               .addFields(
+                {name: "From", value: (tempContent.from? tempContent.from: 'N/A')},
                 {name: 'MAL URL', value: tempContent.malUrl},
                 {name: 'Additional Information', value: tempContent.additionalInfo? (tempContent.additionalInfo.slice(0, 1000) + (tempContent.additionalInfo.length > 1000? '...' : '')): 'N/A'}
               )
