@@ -3,5 +3,6 @@ if(process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = {
-  botToken: process.env.BOT_TOKEN || ''
+  botToken: process.env.BOT_TOKEN || '',
+  prefix: process.env.PREFIX || '~'
 }

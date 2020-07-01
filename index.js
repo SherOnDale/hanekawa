@@ -2,14 +2,11 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require('./config')
 
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}`)
-})
+const events = ['ready', 'message']
 
-client.on('message', msg => {
-  if(msg.content === 'ping') {
-    msg.reply('pong')
-  }
+events.forEach(event => {
+  const eventHandler = require(`./events/${event}`)
+  client.on(event, eventHandler.bind(null, client))
 })
 
 client.login(config.botToken)
