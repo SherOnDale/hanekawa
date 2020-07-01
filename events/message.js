@@ -1,4 +1,7 @@
 const config = require('../config')
+const Crawler = require('../classes/Crawler')
+
+const crawler = new Crawler();
 
 module.exports = async (client, message) => {
   if(message.author.bot) return;
@@ -7,9 +10,17 @@ module.exports = async (client, message) => {
 
   const command = message
     .content
-    .slice(config.prefix)
+    .slice(config.prefix.length)
     .trim()
     .toLowerCase()
-  
-  message.reply(command)
+
+    message.reply(command)
+
+    if(command === 'start') {
+      crawler.start(client)
+    } 
+    if(command === 'stop') {
+      message.reply('stopped')
+      crawler.stopExecution()
+    }
 }
