@@ -18,7 +18,7 @@ module.exports = async (client, message) => {
       crawler.start(client)
     } 
     if(command === 'stop') {
-      message.reply('stopped')
+      message.reply('Stopped')
       crawler.stopExecution()
     }
     if(command.startsWith('resume')) {
