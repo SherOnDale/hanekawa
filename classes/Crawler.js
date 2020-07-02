@@ -96,6 +96,7 @@ module.exports = class Crawler {
             
           if(!this.stop) {
             setTimeout(() => {
+              this.updateActivity(client)
               process.nextTick(this.start.bind(this, client, limit + 50))
             }, 0)
           }
@@ -120,6 +121,16 @@ module.exports = class Crawler {
 
   stopExecution() {
     this.stop = true
+  }
+
+  updateActivity(client) {
+    mongoService.getClient()
+      .db()
+      .collection('characters')
+      .countDocuments({})
+      .then(count => {
+        client.user.setActivity(`Added ${count} characters`)
+      })
   }
 
   sendStatus(client) {
