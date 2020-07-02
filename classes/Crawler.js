@@ -19,7 +19,7 @@ module.exports = class Crawler {
       $('.ranking-list td.people .information a').each((index, el) => {
         urls.push(el.attribs['href'])
       })
-      Promise.all(urls.map(url => axios.get(url)))
+      Promise.all(urls.map(url => axios.get(encodeURI(url))))
         .then(response => {
           response.forEach(res => {
             const $ = cheerio.load(res.data)
