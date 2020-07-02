@@ -4,6 +4,8 @@ const Discord = require('discord.js');
 const mongoService = require('../services/mongo');
 const config = require('../config');
 
+console.log(config)
+
 module.exports = class Crawler {
   constructor() {
     this.stop = false
