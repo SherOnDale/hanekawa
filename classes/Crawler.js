@@ -50,6 +50,7 @@ module.exports = class Crawler {
                 .findOne({malUrl: tempContent.malUrl})
                 .then(result => {
                   console.log('here')
+                  console.log(result)
                   if(!result) {
                     mongoService
                       .getClient()
