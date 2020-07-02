@@ -49,6 +49,7 @@ module.exports = class Crawler {
                 .collection('characters')
                 .findOne({malUrl: tempContent.malUrl})
                 .then(result => {
+                  console.log('here')
                   if(!result) {
                     mongoService
                       .getClient()
@@ -56,9 +57,11 @@ module.exports = class Crawler {
                       .collection('characters')
                       .insertOne(tempContent)
                       .then(() => {
+                        console.log('here three')
                         this.logChannel.send(msgEmbed)
                       })
                       .catch((error) => {
+                        console.log('here two')
                         msgEmbed.setColor('#ff0000')
                         msgEmbed.setTitle('Failed to add ' + tempContent.name)
                         this.logChannel.send(msgEmbed)
