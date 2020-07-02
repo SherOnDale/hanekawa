@@ -114,8 +114,8 @@ module.exports = class Crawler {
           }
         })
     })
-    .catch((outErr) => {
-      console.log(outErr)
+    .catch(() => {
+      console.log('403 error, restarting in 5 mins')
       if(!this.stop) {
         setTimeout(() => {
           process.nextTick(this.start.bind(this, client, limit))
