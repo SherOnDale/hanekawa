@@ -57,11 +57,13 @@ module.exports = class Crawler {
                       .then(() => {
                         this.logChannel.send(msgEmbed)
                       })
-                      .catch(() => {
+                      .catch((error) => {
+                        console.log(error)
                         msgEmbed.setColor('#ff0000')
                         msgEmbed.setTitle('Failed to add ' + tempContent.name)
                         this.logChannel.send(msgEmbed)
                           .catch((err) => {
+                            console.log(err)
                           if(!this.stop) {
                             setTimeout(() => {
                               process.nextTick(this.start.bind(this, client, limit))
@@ -76,11 +78,13 @@ module.exports = class Crawler {
                       })
                   }
                 })
-                .catch((err) => {
+                .catch((error) => {
+                  console.log(error)
                   msgEmbed.setColor('#ff0000')
                   msgEmbed.setTitle('Failed to add ' + tempContent.name)
                   this.logChannel.send(msgEmbed)
                     .catch(err => {
+                      console.log(err)
                     if(!this.stop) {
                       setTimeout(() => {
                         process.nextTick(this.start.bind(this, client, limit))
@@ -102,6 +106,7 @@ module.exports = class Crawler {
           }
         })
         .catch((err) => {  
+          console.log(err)
           if(!this.stop) {
             setTimeout(() => {
               process.nextTick(this.start.bind(this, client, limit))
