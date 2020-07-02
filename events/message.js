@@ -30,4 +30,8 @@ module.exports = async (client, message) => {
       
     }
 
+    if(command === 'status') {
+      crawler.sendStatus(client);
+    }
+
 }

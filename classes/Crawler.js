@@ -121,4 +121,23 @@ module.exports = class Crawler {
   stopExecution() {
     this.stop = true
   }
+
+  sendStatus(client) {
+    mongoService
+      .getClient()
+      .db()
+      .collection('characters')
+      .count({})
+      .then((count) => {
+        const statusEmbed = new Discord.MessageEmbed()
+        .setTitle(client.user.username)
+        .setColor('#0000ff')
+        .setThumbnail(client.user.avatar)
+        .addFields(
+          {name: "Characters Count", value: count}
+        )
+        this.logChannel = client.channels.cache.get(config.logChannel)
+        this.logChannel.send(statusEmbed)
+      })
+  }
 }
