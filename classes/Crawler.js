@@ -119,7 +119,7 @@ module.exports = class Crawler {
       if(!this.stop) {
         setTimeout(() => {
           process.nextTick(this.start.bind(this, client, limit))
-        }, 0)
+        }, 1000 * 60 * 5)
       }
     })
   }
