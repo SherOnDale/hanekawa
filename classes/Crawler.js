@@ -127,12 +127,12 @@ module.exports = class Crawler {
       .getClient()
       .db()
       .collection('characters')
-      .count({})
+      .countDocuments({})
       .then((count) => {
         const statusEmbed = new Discord.MessageEmbed()
         .setTitle(client.user.username)
         .setColor('#0000ff')
-        .setThumbnail(client.user.avatar)
+        .setThumbnail(client.user.avatarURL())
         .addFields(
           {name: "Characters Count", value: count}
         )
